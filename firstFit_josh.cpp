@@ -1,4 +1,7 @@
 #include <iostream> 
+#include <fstream> 
+#include <string> 
+#include <vector>
 using namespace std; 
 
 vector<int> readFromFile (string file) {
