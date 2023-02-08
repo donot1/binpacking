@@ -17,6 +17,8 @@ vector<int> readFromFile (string file) {
 
 
 int firstFit(int binCapacity, vector<int> items) {
+    sort(items.begin(), items.end(), greater<int>()); 
+
     vector<int> bins; 
     bins.push_back(0); 
     for (int i = 0; i < items.size(); i++) {

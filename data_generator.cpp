@@ -30,12 +30,12 @@ void writeToFile(vector<int> &values, string file) {
 
 int main(int argc, char* argv[]) {
   if (argc < 4) {
-    cout << R"(USAGE: ./data_generator N MAX_VAL OUTPUT_FILE DISTRIBUTION
-            N = number of items
-            MAX_VAL = largest possible size of an item
-            OUTPUT_FILE = filename to write output to
-            DISTRIBUTION = one of (binomial, uniform, bimodal)
-            )"; 
+    // cout << "(USAGE: ./data_generator N MAX_VAL OUTPUT_FILE DISTRIBUTION 
+    //         N = number of items
+    //         MAX_VAL = largest possible size of an item
+    //         OUTPUT_FILE = filename to write output to
+    //         DISTRIBUTION = one of (binomial, uniform, bimodal)
+    //         )"; 
     return 0; 
   }
   
