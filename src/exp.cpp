@@ -1,5 +1,6 @@
 #include <functional>
 #include <iostream>
+#include <fstream> 
 #include <vector>
 #include <string> 
 #include <random> 
@@ -30,7 +31,7 @@ struct TestInput {
 };
 
 struct TestOutput {
-  int num_bins; 
+  double num_bins; 
   double exec_time_ms;
 };
 
@@ -57,7 +58,7 @@ TestOutput runTest(PackingAlg algorithm, TestInput input) {
 
   chrono::duration<double, std::milli> duration_ms = end - start; 
   double exec_time_ms = duration_ms.count(); 
-  return {num_bins, exec_time_ms};  
+  return {(double)num_bins, exec_time_ms};  
 }
 
 map<string, TestOutput> testDataset(DataParameters params, int binCapacity, string output_file)  {
@@ -84,17 +85,41 @@ map<string, vector<TestOutput>> testDistribution (DataParameters params, int bin
   return combined_results; 
 }
 
+TestOutput averageOutputs(vector<TestOutput> &outputs) {
+  double total_bins = 0, total_exec_time = 0; 
+  for (auto output : outputs) {
+    total_bins += output.num_bins;
+    total_exec_time += output.exec_time_ms; 
+  }
+  return {total_bins / outputs.size(), 
+          total_exec_time / outputs.size()}; 
+}
+
 int main(int argc, char* argv[]) {
-  srand(1); 
+  srand(1);
+
+  if (argc < 5) {
+    cout << "USAGE: ./exp NUMBER_ITEMS  MAX_ITEM_SIZE  BIN_CAPACITY  NUMBER_TRIALS  DISTRIBUTION  RESULTS_OUTPUT_FILE\n\n";  
+    return 0; 
+  }
+
+  int num_items = stoi(argv[1]); 
+  int max_item_size = stoi(argv[2]);
+  int bin_capacity = stoi(argv[3]); 
+  int num_trials = stoi(argv[4]); 
+  string distribution = argv[5];
+  string output_file = argv[6]; 
+
   
-  DataParameters test_params = {1000, 100, "uniform"}; 
-  auto results = testDistribution(test_params, 100, 10); 
-  
+  DataParameters test_params = {num_items, max_item_size, distribution}; 
+  auto results = testDistribution(test_params, bin_capacity, num_trials); 
+
+  ofstream resultsFile; 
+  resultsFile.open(output_file); 
   for (auto elem : results) {
-    cout << "RESULTS FOR ALG: " << elem.first << '\n'; 
-    for (auto x : elem.second) {
-      cout << x << '\n'; 
-    }
-  } 
+    resultsFile << "AVERAGE RESULTS FOR ALG: " << elem.first << '\n';
+    resultsFile << averageOutputs(elem.second); 
+  }
+  resultsFile.close(); 
   return 0;
 }
