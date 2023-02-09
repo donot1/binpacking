@@ -2,7 +2,7 @@
 #include <fstream> 
 #include <random> 
 #include <vector> 
-
+#include "binpacking.h"
 
 using namespace std; 
 
@@ -19,33 +19,9 @@ vector<int> generateRandom(Generator gen, Distribution dist,
 }
 
 
-void writeToFile(vector<int> &values, string file) {
-  ofstream output; 
-  output.open(file); 
-  for (int val : values)
-    output << val << " "; 
-  output.close(); 
-  return; 
-}
-
-
-int main(int argc, char* argv[]) {
-  if (argc < 4) {
-    // cout << "(USAGE: ./data_generator N MAX_VAL OUTPUT_FILE DISTRIBUTION 
-    //         N = number of items
-    //         MAX_VAL = largest possible size of an item
-    //         OUTPUT_FILE = filename to write output to
-    //         DISTRIBUTION = one of (binomial, uniform, bimodal)
-    //         )"; 
-    return 0; 
-  }
-  
+ vector<int> generateItems (int num_items, int max_val, 
+                            string output_file, string distribution) { 
   srand(time(nullptr)); 
-
-  int num_items = stoi(argv[1]); 
-  int max_val = stoi(argv[2]); 
-  string output_file(argv[3]); 
-  string distribution(argv[4]);
 
   default_random_engine generator; 
   vector<int> generated_values;
@@ -68,9 +44,10 @@ int main(int argc, char* argv[]) {
   }
   else {
     cout << "INVALID DISTRIBUTION: " << distribution << "\n"; 
+    throw(1); 
   }
 
   
   writeToFile(generated_values, output_file); 
-  return 0; 
+  return generated_values; 
 }
