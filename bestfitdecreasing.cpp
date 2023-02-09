@@ -4,6 +4,7 @@
 #include <vector> 
 #include <set> 
 #include <algorithm> 
+
 using namespace std; 
 
 vector<int> readFromFile (string file) {
@@ -17,7 +18,7 @@ vector<int> readFromFile (string file) {
   return items; 
 }
 
-int bestFit (vector<int> &items, int bin_size) {
+int bestFitDecreasing (vector<int> &items, int bin_size) {
   sort(items.begin(), items.end(), greater<int>()); 
   
   int number_bins = 0; 
@@ -48,6 +49,6 @@ int main(int argc, char* argv[]) {
   string inputFile = argv[1]; 
   int bin_size = stoi(argv[2]); 
   vector<int> item_sizes = readFromFile(inputFile); 
-  bestFit(item_sizes, bin_size);  
+  bestFitDecreasing(item_sizes, bin_size);  
   return 0; 
 }

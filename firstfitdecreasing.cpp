@@ -16,7 +16,7 @@ vector<int> readFromFile (string file) {
 }
 
 
-int firstFit(int binCapacity, vector<int> items) {
+int firstFitDecreasing(int binCapacity, vector<int> items) {
     sort(items.begin(), items.end(), greater<int>()); 
 
     vector<int> bins; 
@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
   string inputFile = argv[1]; 
   int bin_size = stoi(argv[2]); 
   vector<int> item_sizes = readFromFile(inputFile); 
-  int x = firstFit(bin_size, item_sizes); 
+  int x = firstFitDecreasing(bin_size, item_sizes); 
   cout << x << '\n'; 
 
   return 0; 
