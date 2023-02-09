@@ -21,9 +21,8 @@ vector<int> generateRandom(Generator gen, Distribution dist,
 
  vector<int> generateItems (int num_items, int max_val, 
                             string output_file, string distribution) { 
-  srand(time(nullptr)); 
-
-  default_random_engine generator; 
+  default_random_engine generator;
+  generator.seed(rand()); 
   vector<int> generated_values;
 
   if (distribution == "binomial") {
