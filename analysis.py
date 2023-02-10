@@ -36,5 +36,33 @@ plt.plot([10, 100, 1000, 10000], firstFitDecreasing["binomial"], label="First Fi
 plt.legend()
 plt.show()
 
+plt.cla()
+
+fig, ax = plt.subplots()
+plt.title("Bimodal Distribution")
+plt.xlabel("Number of items")
+plt.ylabel("Number of bins (scaled)")
+plt.plot([10, 100, 1000, 10000], bestFit["bimodal"], label="Best Fit")
+plt.plot([10, 100, 1000, 10000], bestFitDecreasing["bimodal"], label="Best Fit Decreasing")
+plt.plot([10, 100, 1000, 10000], firstFit["bimodal"], label="First Fit")
+plt.plot([10, 100, 1000, 10000], firstFitDecreasing["bimodal"], label="First Fit Decreasing")
+plt.legend()
+plt.show()
+
+plt.cla()
+
+fig, ax = plt.subplots()
+plt.title("Uniform Distribution")
+plt.xlabel("Number of items")
+plt.ylabel("Number of bins (scaled)")
+plt.plot([10, 100, 1000, 10000], bestFit["uniform"], label="Best Fit")
+plt.plot([10, 100, 1000, 10000], bestFitDecreasing["uniform"], label="Best Fit Decreasing")
+plt.plot([10, 100, 1000, 10000], firstFit["uniform"], label="First Fit")
+plt.plot([10, 100, 1000, 10000], firstFitDecreasing["uniform"], label="First Fit Decreasing")
+plt.legend()
+plt.show()
+
+plt.cla()
+
 
         
