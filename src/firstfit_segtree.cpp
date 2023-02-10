@@ -3,6 +3,7 @@
 #include <string> 
 #include <vector>
 #include "binpacking.h"
+#include <algorithm> 
 using namespace std; 
 
 struct SegmentTree {
@@ -57,4 +58,9 @@ int firstFitSegTree(int binCapacity, vector<int> &items) {
     segTree.placeItem(item); 
   }
   return segTree.bin_count; 
+}
+
+int firstFitDecreasingSegTree(int binCapacity, vector<int> &items) {
+  sort(items.begin(), items.end(), greater<int>()); 
+  return firstFitSegTree(binCapacity, items); 
 }

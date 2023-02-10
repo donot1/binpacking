@@ -15,4 +15,5 @@ int firstFit(int binCapacity, vector<int> &items);
 int firstFitDecreasing(int binCapacity, vector<int> &items);
 int bestFit(int binCapacity, vector<int> &items);
 int bestFitDecreasing(int binCapacity, vector<int> &items); 
-int firstFitSegTree(int binCapacity, vector<int> &items); 
+int firstFitSegTree(int binCapacity, vector<int> &items);
+int firstFitDecreasingSegTree(int binCapacity, vector<int> &items); 
