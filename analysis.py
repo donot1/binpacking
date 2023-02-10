@@ -65,4 +65,19 @@ plt.show()
 plt.cla()
 
 
-        
+# bimodal, e.g.        
+bestFitTime = [0.007997, 0.0638753, 0.675893, 8.32111]
+bestFitDecreasingTime = [0.0065137, 0.0674007, 0.829683, 10.7817]
+firstFitTime = [0.0026384, 0.0203386, 1.2065, 122.355]
+firstFitDecreasingTime = [0.003397, 0.0300988, 1.50518, 135.479]
+
+fig, ax = plt.subplots()
+plt.title("Algorithm Running Times (Using Bimodal Distribution as example)")
+plt.xlabel("Number of items")
+plt.ylabel("Time (ms)")
+plt.plot([10, 100, 1000, 10000], bestFitTime, label="Best Fit")
+plt.plot([10, 100, 1000, 10000], bestFitDecreasingTime, label="Best Fit Decreasing")
+plt.plot([10, 100, 1000, 10000], firstFitTime, label="First Fit")
+plt.plot([10, 100, 1000, 10000], firstFitDecreasingTime, label="First Fit Decreasing")
+plt.legend()
+plt.show()
